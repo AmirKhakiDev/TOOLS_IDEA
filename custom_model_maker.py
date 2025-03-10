@@ -39,20 +39,20 @@ class CustomUserManager(BaseUserManager):
 forms = """
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
-from .models import CustomUser
+from .models import User
 
 
 class CustomUserCreationForm(UserCreationForm):
 
     class Meta:
-        model = CustomUser
+        model = User
         fields = ("email",)
 
 
 class CustomUserChangeForm(UserChangeForm):
 
     class Meta:
-        model = CustomUser
+        model = User
         fields = ("email",)
 """
 
@@ -83,9 +83,9 @@ class User(AbstractBaseUser, PermissionsMixin):
 admin = 'admins.py'
 admin_code = """
 from django.contrib import admin
-from .models import CustomUser
+from .models import User
 
-@admin.register(CustomUser)
+@admin.register(User)
 class CustomUserAdmin(admin.ModelAdmin):
     list_display = ("email", "is_staff", "is_active", "date_joined")
     search_fields = ("email",)
